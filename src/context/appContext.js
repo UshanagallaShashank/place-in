@@ -641,7 +641,7 @@ const AppProvider = ({ children }) => {
   const loginUser = async (currentUser) => {
     dispatch({ type: LOGIN_USER_BEGIN });
     try {
-      const { data } = await axios.post("/api/v1/auth/login", currentUser);
+      const { data } = await axios.post("http://localhost:5000/api/v1/auth/login", currentUser);
       const { user, token } = data;
 
       dispatch({
