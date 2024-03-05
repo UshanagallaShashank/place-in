@@ -612,7 +612,7 @@ const AppProvider = ({ children }) => {
     dispatch({ type: REGISTER_USER_BEGIN });
     try {
       const response = await axios.post(
-        "/api/v1/student/auth/register",
+        "http://localhost:5000/api/v1/student/auth/register",
         currentUser
       );
       console.log(response);
