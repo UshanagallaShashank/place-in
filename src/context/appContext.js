@@ -640,27 +640,37 @@ const AppProvider = ({ children }) => {
   };
   const loginUser = async (currentUser) => {
     dispatch({ type: LOGIN_USER_BEGIN });
+    
     try {
-      const { data } = await axios.post("http://localhost:5000/api/v1/auth/login", currentUser);
+      const { data } = await axios.post(
+        "https://localhost:5000/api/v1/auth/login", // Use HTTPS in development
+        currentUser
+      );
+  
       const { user, token } = data;
-
+  
       dispatch({
         type: LOGIN_USER_SUCCESS,
         payload: { user, token },
       });
-
+  
       addUserToLocalStorage({ user, token });
-      clearAlert();
     } catch (error) {
-      console.log(error.response.data);
-      dispatch({
-        type: LOGIN_USER_ERROR,
-        payload: { msg: error.response.data.message },
-      });
+      if (error.response) {
+        console.log(error.response.data);
+        dispatch({
+          type: LOGIN_USER_ERROR,
+          payload: { msg: error.response.data.message },
+        });
+      } else {
+        console.error("Network error or request canceled:", error.message);
+        // Handle other types of errors (e.g., network issues)
+      }
     }
-    clearAlert();
+    
+    clearAlert(); // Call clearAlert outside of the try block if it should always execute after the login process
   };
-  const logoutUser = () => {
+    const logoutUser = () => {
     dispatch({ type: LOGOUT_USER });
     removeUserFromLocalStorage();
   };
