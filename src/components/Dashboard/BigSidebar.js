@@ -130,27 +130,7 @@ const BigSidebar = () => {
             </div>
           );
         })}
-        <div
-              onClick={() => {
-                navigate(`/profile/${user?._id}`);
-              }}
-              className={`flex items-center py-2 px-4 ${
-                window.location.pathname.substring(0,9)===`/profile/` &&
-                "bg-blue-200 rounded-r-[32px] text-[#001D35] hover:bg-blue-200 font-bold"
-              }
-                  md:text-base
-                  text-md
-                  font-medium
-                  text-gray-600
-                  hover:bg-gray-200 hover:rounded-r-[32px] cursor-pointer`}
-            >
-              <div className="mr-3 ">
-                {window.location.pathname.substring(0,9)===`/profile/`
-                  ? <FaUserCircle/>
-                  : <FaUserCircle color="#bbb" />}
-              </div>
-              <div>Profile</div>
-            </div>
+        
       </main>
     </div>
   );

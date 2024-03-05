@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { useAppContext } from "../context/appContext";
-import Alert from "../components/Alert";
 import Logo from "../components/Logo";
 
 const initialState = {
@@ -13,25 +12,27 @@ const initialState = {
   password: "",
   showAlert: true,
 };
+
 const Register = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [values, setValues] = useState(initialState);
-  const { user, isLoading, showAlert, displayAlert, registerUser } =
-    useAppContext();
+  const { user, isLoading, displayAlert, registerUser } = useAppContext();
+
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
+
   async function onSubmit(e) {
     e.preventDefault();
-    const { name,enrollmentNo,email, password } = values;
+    const { name, enrollmentNo, email, password } = values;
     if (!email || !password || !name || !enrollmentNo) {
       displayAlert("danger", "Please enter email and password");
       return;
     }
-    registerUser({ name,enrollmentNo,email, password });
-    console.log(values);
+    registerUser({ name, enrollmentNo, email, password });
   }
+
   useEffect(() => {
     if (user) {
       setTimeout(() => {
@@ -39,149 +40,79 @@ const Register = () => {
       }, 3000);
     }
   }, [user, navigate]);
+
   return (
-    <div className="m-auto">
-      <Logo />
-      <div
-        className="flex justify-center  items-center
-      px-6 py-2 max-w-6xl m-auto h-screen"
-      >
-        <div className="lg:p-[36px]  p-4 lg:mt-8 mt-14   w-full  md:w-[100%] lg:w-[40%] md:mx-0 mx-auto border border-black rounded-lg shadow-xl">
-          <div className="w-full h-full ">
-            <div className="font-medium text-2xl justify-center flex">
-              Register
+    <div className="h-screen items-center flex justify-center px-5 lg:px-0">
+      <div className="max-w-screen-xl bg-white border shadow sm:rounded-lg flex justify-center flex-1">
+        <div className="flex-1 bg-blue-900 text-center hidden md:flex">
+          <div
+            className="m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `url(https://www.tailwindtap.com/assets/common/marketing.svg)`,
+            }}
+          ></div>
+        </div>
+        <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
+          <div className="flex flex-col items-center">
+            <div className="text-center">
+              <h1 className="text-2xl xl:text-4xl font-extrabold text-blue-900">
+                Student Sign up
+              </h1>
+              <p className="text-[12px] text-gray-500">
+                Hey enter your details to create your account
+              </p>
             </div>
-            {showAlert && <Alert />}
-            <form
-              className="flex flex-col items-center w-full mt-3"
-              onSubmit={onSubmit}
-            >
-              <div className="flex flex-col items-center w-full mb-4">
-                <label
-                  className="text-left w-full text-black text-lg font-medium"
-                  htmlFor="name"
-                >
-                  Name
-                </label>
+            <div className="w-full flex-1 mt-8">
+              <form
+                className="mx-auto max-w-xs flex flex-col gap-4"
+                onSubmit={onSubmit}
+              >
                 <input
-                  className="mt-2 w-full h-10 border border-gray-300 rounded
-                transition duration-150 ease-in-out focus:text-gray-700
-                 focus:bg-white focus:border-slate-600 p-2"
+                  className="w-full px-5 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                   type="text"
-                  id="name"
-                  name="name"
                   placeholder="Enter your name"
-                  required={true}
+                  name="name"
                   value={values.name}
                   onChange={handleChange}
                 />
-              </div>
-              <div className="flex flex-col items-center w-full mb-4">
-                <label
-                  className="text-left w-full text-black text-lg font-medium"
-                  htmlFor="email"
-                >
-                  Email
-                </label>
                 <input
-                  className="mt-2 w-full h-10 border border-gray-300 rounded
-                transition duration-150 ease-in-out focus:text-gray-700
-                 focus:bg-white focus:border-slate-600 p-2"
+                  className="w-full px-5 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                   type="email"
-                  id="email"
+                  placeholder="Enter your email"
                   name="email"
-                  placeholder="Enter Email Address"
-                  required={true}
                   value={values.email}
                   onChange={handleChange}
                 />
-              </div>
-              <div className="flex flex-col items-center w-full mb-4">
-                <label
-                  className="text-left w-full text-black text-lg font-medium"
-                  htmlFor="email"
-                >
-                  Enrollment No
-                </label>
                 <input
-                  className="mt-2 w-full h-10 border border-gray-300 rounded
-                transition duration-150 ease-in-out focus:text-gray-700
-                 focus:bg-white focus:border-slate-600 p-2"
+                  className="w-full px-5 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                   type="text"
-                  id="enrollmentNo"
+                  placeholder="Enter your Roll No"
                   name="enrollmentNo"
-                  placeholder="Enter Enrollment Number"
-                  required={true}
                   value={values.enrollmentNo}
                   onChange={handleChange}
                 />
-              </div>
-              <div className="relative flex flex-col items-center w-full">
-                <label
-                  className="text-left w-full text-black text-lg font-medium"
-                  htmlFor="password"
-                >
-                  Password
-                </label>
                 <input
-                  className=" mt-2 w-full h-10 border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700
-                focus:bg-white focus:border-slate-600 p-2"
+                  className="w-full px-5 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                   type={showPassword ? "text" : "password"}
-                  id="password"
+                  placeholder="Password"
                   name="password"
-                  placeholder="Enter your password"
-                  required={true}
                   value={values.password}
                   onChange={handleChange}
                 />
-                {showPassword ? (
-                  <AiFillEyeInvisible
-                    onClick={() => setShowPassword((prev) => !prev)}
-                    className="absolute right-3 top-12 text-xl cursor-pointer"
-                  />
-                ) : (
-                  <AiFillEye
-                    onClick={() => setShowPassword((prev) => !prev)}
-                    className="absolute right-3 top-12 text-xl cursor-pointer"
-                  />
-                )}
-              </div>
-
-              <button
-                disabled={isLoading}
-                className="mt-8 w-full bg-black text-white px-7 py-3 text-sm 
-          font-medium uppercase rounded shadow-md
-        hover:bg-gray-700 transition duration-150 
-          ease-in-out hover:shadow-lg active:bg-gray-800"
-                type="submit"
-              >
-                {isLoading && (
-                  <Loader
-                    backgroundColor="text-gray-300"
-                    loaderColor="fill-black"
-                  />
-                )}
-                {!isLoading && "Sign Up"}
-              </button>
-
-              <div className="mt-4 flex flex-col md:flex-row items-center w-full">
-                <div className="flex items-center font-light text-base text-gray-500">
-                  Have an account
-                  <span
-                    className="text-black ml-2 font-medium cursor-pointer"
-                    onClick={() => navigate("/login")}
-                  >
-                    Login
-                  </span>
-                </div>
-                <div
-                  className="cursor-pointer md:ml-auto flex items-center font-light text-base text-gray-500"
-                  onClick={() => navigate("/forgotpassword")}
+                <button className="mt-5 tracking-wide font-semibold bg-blue-900 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                  <span className="ml-3">Sign Up</span>
+                </button>
+              </form>
+              <p className="mt-6 text-xs text-gray-600 text-center">
+                Already have an account?{" "}
+                <span
+                  className="text-blue-900 font-semibold cursor-pointer"
+                  onClick={() => navigate("/login")}
                 >
-                  Forgot Password?
-                </div>
-              </div>
-            </form>
+                  Sign in
+                </span>
+              </p>
+            </div>
           </div>
         </div>
       </div>

@@ -901,28 +901,28 @@ const AppProvider = ({ children }) => {
     }
     clearAlert();
   };
-  const getCSVDataByStudent = async (id) => {
-    startLoading();
-    try {
-      const { data } = await authFetch.get(`/student/csv/${id}`, {
-        responseType: "blob",
-      });
-      const url = window.URL.createObjectURL(data);
-      const link = document.createElement("a");
-      link.href = url;
-      link.setAttribute("download", "student.csv");
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
-      stopLoading();
-      toast.success("CSV Downloaded");
-    } catch (error) {
-      console.log(error);
-      stopLoading();
-      toast.error("Error Downloading CSV");
-    }
-  };
+  // const getCSVDataByStudent = async (id) => {
+  //   startLoading();
+  //   try {
+  //     const { data } = await authFetch.get(`/student/csv/${id}`, {
+  //       responseType: "blob",
+  //     });
+  //     const url = window.URL.createObjectURL(data);
+  //     const link = document.createElement("a");
+  //     link.href = url;
+  //     link.setAttribute("download", "student.csv");
+  //     document.body.appendChild(link);
+  //     link.click();
+  //     document.body.removeChild(link);
+  //     window.URL.revokeObjectURL(url);
+  //     stopLoading();
+  //     toast.success("CSV Downloaded");
+  //   } catch (error) {
+  //     console.log(error);
+  //     stopLoading();
+  //     toast.error("Error Downloading CSV");
+  //   }
+  // };
   const getCSVDataByCompany = async (ids) => {
     startLoading();
     try {
@@ -1904,7 +1904,7 @@ const AppProvider = ({ children }) => {
         getStatsByAdmin,
         // STUDENT SIDE
         getStudentByIdByStudent,
-        getCSVDataByStudent,
+        // getCSVDataByStudent,
         getStudentProfileBasics,
         updateStudentProfileBasics,
         getStudentProfilePersonal,

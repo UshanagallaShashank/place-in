@@ -13,7 +13,7 @@ const CompanyHome = () => {
   }, []);
   return (
     <div className="pb-16">
-      <div className="flex sm:flex-row flex-col mx-2">
+      {/* <div className="flex sm:flex-row flex-col mx-2">
         <StatCard
           title="Total Jobs"
           value={statsForCompany?.totalJobDrives}
@@ -48,7 +48,7 @@ const CompanyHome = () => {
             statsForCompany?.totalNotSelectedStudents > 1 ? `Students` : "Student"
           }
         />
-      </div>
+      </div> */}
     </div>
   );
 };

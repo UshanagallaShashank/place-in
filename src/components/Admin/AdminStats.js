@@ -43,35 +43,6 @@ const COLORS = [
   "#34a853",
   "#FF8C00",
   "#00C49F",
-  "#5FE5CB",
-  "#DACCA0",
-  "#282A9B",
-  "#E9B8A4",
-  "#EE033C",
-  "#2DF27A",
-  "#5B60D6",
-  "#603940",
-  "#B56293",
-  "#36DB0B",
-  "#716036",
-  "#2C3541",
-  "#998E7C",
-  "#32E667",
-  "#CD238C",
-  "#F56EDB",
-  "#B22D02",
-  "#303BB7",
-  "#44383B",
-  "#354DC6",
-  "#E72209",
-  "#CA0325",
-  "#7A1532",
-  "#0C732A",
-  "#22F756",
-  "#10928D",
-  "#09C742",
-  "#A4C992",
-  "#36065D",
 ];
 
 const PlacedChart = () => {
@@ -226,7 +197,7 @@ const AdminStats = () => {
     );
   return (
     <div className="pb-16">
-      <ActionCard
+      {/* <ActionCard
         title={"Search By Year"}
         bgColor={"bg-orange-500"}
         icon={<FaSearch />}
@@ -318,8 +289,8 @@ const AdminStats = () => {
               : "Job"
           }
         />
-      </div>
-      <ActionCard
+      </div> */}
+      {/* <ActionCard
         title={"Placed vs Unplaced Students"}
         bgColor={"bg-violet-500"}
         icon={<BsGraphUp />}
@@ -336,7 +307,7 @@ const AdminStats = () => {
         bgColor={"bg-green-500"}
         icon={<FaChartBar />}
         dropDownComponent={<BranchBarChart />}
-      />
+      /> */}
     </div>
   );
 };

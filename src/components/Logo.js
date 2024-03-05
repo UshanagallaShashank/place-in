@@ -7,7 +7,7 @@ const Logo = () => {
     <header className="pt-8 absolute pl-8">
       <div className="flex items-center">
         <img
-          src="/assets/images/logo.png"
+          src="/assets/images/logo1.png"
           alt="logo"
           className="w-48 h-12 m-auto"
           onClick={() => navigate("/")}

@@ -14,7 +14,6 @@ const SmallSidebar = () => {
     bottom-0 top-auto border-t  border-gray-200 shadow px-2 sm:px-4 py-2 w-full"
       style={{ zIndex: 100 }}
     >
-      {/* RENDERING THE HOME OPTION */}
       <div
         onClick={() => {
           navigate("/");
@@ -36,7 +35,6 @@ const SmallSidebar = () => {
         </div>
         <div className="text-xs hidden xs:block font-semibold">Home</div>
       </div>
-      {/* ALL OTHER OPTIONS */}
       {adminSidebarItems.map((item, index) => {
         const { iconAbled, iconDisabled, title, link } = item;
         return (

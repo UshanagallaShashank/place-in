@@ -12,12 +12,14 @@ const initialState = {
   userType: "admin",
   showAlert: true,
 };
+
 const Login = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [values, setValues] = useState(initialState);
   const { user, isLoading, showAlert, displayAlert, loginUser } =
     useAppContext();
+
   const handleChange = (e) => {
     const name = e.target.name;
     const value =
@@ -29,15 +31,14 @@ const Login = () => {
 
   async function onSubmit(e) {
     e.preventDefault();
-    console.log(values);
     const { email, password, userType } = values;
     if (!email || !password || !userType) {
       displayAlert("danger", "Please enter email and password");
       return;
     }
     loginUser({ email, password, userType });
-    console.log(values);
   }
+
   useEffect(() => {
     if (user) {
       setTimeout(() => {
@@ -45,55 +46,48 @@ const Login = () => {
       }, 3000);
     }
   }, [user, navigate]);
+
   return (
-    <div className="m-auto">
-      <Logo />
-      <div
-        className="flex justify-center items-center
-      px-6 py-2 max-w-6xl m-auto h-screen"
-      >
-        <div className="lg:p-[36px]  p-4 lg:mt-8 mt-14   w-full  md:w-[100%] lg:w-[40%] md:mx-0 mx-auto border border-black rounded-lg shadow-xl">
-          <div className="w-full h-full ">
-            <div className="font-medium text-2xl justify-center flex">
-              Login
+    <div className="h-screen items-center flex justify-center px-5 lg:px-0">
+      <div className="max-w-screen-xl bg-white border shadow sm:rounded-lg flex justify-center flex-1">
+        <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
+          <div className="flex flex-col items-center">
+            <div className="font-medium text-2xl xl:text-4xl text-blue-900 text-center mb-4">
+              LOGIN
             </div>
             {showAlert && <Alert />}
             <form
-              className="flex flex-col items-center w-full mt-3"
+              className="w-full max-w-xs"
               onSubmit={onSubmit}
             >
-              <div className="flex flex-col items-center w-full mb-4">
+              <div className="mb-4">
                 <label
-                  className="text-left w-full text-black text-lg font-medium"
+                  className="block text-sm font-medium text-gray-700"
                   htmlFor="userType"
                 >
                   User Type
                 </label>
                 <select
-                  className="mt-2 w-full h-10 border border-gray-300 rounded
-      transition duration-150 ease-in-out focus:text-gray-700
-      focus:bg-white focus:border-slate-600 p-2"
+                  className="mt-2 w-full h-10 border border-gray-300 rounded-md transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600 p-2"
                   id="userType"
                   name="userType"
                   value={values.userType}
                   onChange={handleChange}
                 >
+                  <option value="student">Student</option>
                   <option value="admin">Admin</option>
                   <option value="company">Company</option>
-                  <option value="student">Student</option>
                 </select>
               </div>
-              <div className="flex flex-col items-center w-full mb-4">
+              <div className="mb-4">
                 <label
-                  className="text-left w-full text-black text-lg font-medium"
+                  className="block text-sm font-medium text-gray-700"
                   htmlFor="email"
                 >
                   Email
                 </label>
                 <input
-                  className="mt-2 w-full h-10 border border-gray-300 rounded
-                transition duration-150 ease-in-out focus:text-gray-700
-                 focus:bg-white focus:border-slate-600 p-2"
+                  className="mt-2 w-full h-10 border border-gray-300 rounded-md transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600 p-2"
                   type="email"
                   id="email"
                   name="email"
@@ -103,43 +97,44 @@ const Login = () => {
                   onChange={handleChange}
                 />
               </div>
-              <div className="relative flex flex-col items-center w-full">
-                <label
-                  className="text-left w-full text-black text-lg font-medium"
-                  htmlFor="password"
-                >
-                  Password
-                </label>
-                <input
-                  className=" mt-2 w-full h-10 border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700
-                focus:bg-white focus:border-slate-600 p-2"
-                  type={showPassword ? "text" : "password"}
-                  id="password"
-                  name="password"
-                  placeholder="Enter your password"
-                  required={true}
-                  value={values.password}
-                  onChange={handleChange}
-                />
-                {showPassword ? (
-                  <AiFillEyeInvisible
-                    onClick={() => setShowPassword((prev) => !prev)}
-                    className="absolute right-3 top-12 text-xl cursor-pointer"
-                  />
-                ) : (
-                  <AiFillEye
-                    onClick={() => setShowPassword((prev) => !prev)}
-                    className="absolute right-3 top-12 text-xl cursor-pointer"
-                  />
-                )}
-              </div>
+              <div className="relative mb-4">
+  <label
+    className="block text-sm font-medium text-gray-700"
+    htmlFor="password"
+  >
+    Password
+  </label>
+  <div className="relative">
+    <input
+      className="mt-2 w-full h-10 border border-gray-300 rounded-md transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600 p-2 pr-10"
+      type={showPassword ? "text" : "password"}
+      id="password"
+      name="password"
+      placeholder="Enter your password"
+      required={true}
+      value={values.password}
+      onChange={handleChange}
+    />
+    {showPassword ? (
+      <AiFillEyeInvisible
+        onClick={() => setShowPassword((prev) => !prev)}
+        className="absolute right-3 top-1/2 -translate-y-1/2 text-xl cursor-pointer"
+      />
+    ) : (
+      <AiFillEye
+        onClick={() => setShowPassword((prev) => !prev)}
+        className="absolute right-3 top-1/2 -translate-y-1/2 text-xl cursor-pointer"
+      />
+    )}
+  </div>
+</div>
 
               <button
                 disabled={isLoading}
                 className="mt-8 w-full bg-black text-white px-7 py-3 text-sm 
-          font-medium uppercase rounded shadow-md
-        hover:bg-gray-700 transition duration-150 
-          ease-in-out hover:shadow-lg active:bg-gray-800"
+                  font-medium uppercase rounded shadow-md
+                  hover:bg-gray-700 transition duration-150 
+                  ease-in-out hover:shadow-lg active:bg-gray-800"
                 type="submit"
               >
                 {isLoading && (
@@ -150,7 +145,6 @@ const Login = () => {
                 )}
                 {!isLoading && "Login"}
               </button>
-
               <div className="mt-4 flex flex-col md:flex-row items-center w-full">
                 <div className="flex items-center font-light text-base text-gray-500">
                   Don't have an account
@@ -161,15 +155,18 @@ const Login = () => {
                     Register
                   </span>
                 </div>
-                <div
-                  className="cursor-pointer md:ml-auto flex items-center font-light text-base text-gray-500"
-                  onClick={() => navigate("/forgotpassword")}
-                >
-                  Forgot Password?
-                </div>
+                
               </div>
             </form>
           </div>
+        </div>
+        <div className="flex-1 bg-blue-900 text-center hidden md:flex">
+          <div
+            className="m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `url(https://www.tailwindtap.com/assets/common/marketing.svg)`,
+            }}
+          ></div>
         </div>
       </div>
     </div>

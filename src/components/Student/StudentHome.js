@@ -71,7 +71,7 @@ const StudentHome = () => {
   return (
     <div className="pb-16">
       <div className="flex sm:flex-row flex-col mx-2">
-        <StatCard
+        {/* <StatCard
           title="Applied In"
           value={statsForStudent?.totalAppliedCount}
           icon={<MdCheckCircle />}
@@ -100,9 +100,9 @@ const StudentHome = () => {
           icon={<MdAccountCircle />}
           textColor={"text-blue-500"}
           valueText={""}
-        />
+        /> */}
       </div>
-      <ActionCard
+      {/* <ActionCard
         title={"Applied In Jobs"}
         bgColor={"bg-purple-500"}
         icon={<FaCheckCircle />}
@@ -123,7 +123,7 @@ const StudentHome = () => {
         bgColor={"bg-pink-500"}
         icon={<BsFillCalendar2MonthFill />}
         dropDownComponent={<CalendarComponent />}
-      />
+      /> */}
     </div>
   );
 };
